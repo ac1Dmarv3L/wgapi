@@ -1,0 +1,21 @@
+{
+  "name": "ac1dmarv3l/wgapiwrapper",
+  "description": "Wargaming API wrapper",
+  "type": "project",
+  "require": {
+    "php": "^8.0",
+    "guzzlehttp/guzzle": "^7.0"
+  },
+  "license": "GPL-3.0-or-later",
+  "authors": [
+    {
+      "name": "ac1Dmarv3L",
+      "email": "ac1dmarv3l@gmail.com"
+    }
+  ],
+  "autoload": {
+    "psr-4": {
+      "ac1dmarv3l\\WargamingAPIWrapper\\": "lib/"
+    }
+  }
+}

@@ -1,0 +1,14 @@
+# Ignore development files
+.idea
+src/config/config.dev.php
+images
+
+# Ignore Composer's vendor folder
+vendor
+
+# Ignore Tailwind CSS development environment
+node_modules
+src/assets/css-dev
+tailwind.config.js
+package.json
+package-lock.json

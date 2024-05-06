@@ -267,7 +267,7 @@
              */
 
             if (isset($_POST['submit'])) {
-                $users = $wrapper->searchUser($_POST['nickname'], $_POST['language'], $_POST['limit'], $_POST['type'])->getData();
+                $users = $wrapper->gameInstance->searchUser($_POST['nickname'], $_POST['language'], $_POST['limit'], $_POST['type'])->getData();
 
                 if (isset($users['meta']) && $users['meta'] >= 1) {
                     echo '<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 py-6">'; // Responsive grid setup

@@ -266,20 +266,25 @@
              * @var $wrapper
              */
 
-            if (isset($_POST['submit'])) {
-                $users = $wrapper->gameInstance->searchUser($_POST['nickname'], $_POST['language'], $_POST['limit'], $_POST['type'])->getData();
+            if (isset($_POST['submit']))
+            {
+//                dd($users);
 
-                if (isset($users['meta']) && $users['meta'] >= 1) {
+                if (isset($users['meta']) && $users['meta'] >= 1)
+                {
                     echo '<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 py-6">'; // Responsive grid setup
 
-                    foreach ($users['data'] as $user) {
+                    foreach ($users['data'] as $user)
+                    {
                         echo '<div class="p-6 border-2 border-gray-700 mx-8 rounded-3xl shadow-sm overflow-hidden">';
                         echo '<p class="text-2xl underline"><a href="./profile/' . $user['nickname'] . '">' . $user['nickname'] . '</a></p>';
                         echo '<p><span class="font-bold">Account ID:</span> ' . $user['account_id'] . '</p>';
                         echo '</div>';
                     }
                     // Close grid container
-                } else {
+                }
+                else
+                {
                     echo '<div class="p-6 bg-red-200 border-b-2 border-b-orange-700 text-black">';
                     print('Error!');
                 }

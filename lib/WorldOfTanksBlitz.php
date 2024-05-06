@@ -2,62 +2,44 @@
 
 namespace ac1dmarv3l\WargamingAPIWrapper;
 
-use GuzzleHttp\Client;
-use GuzzleHttp\Exception\GuzzleException;
-
-class WorldOfTanksBlitz extends Game
+class WorldOfTanksBlitz extends Main
 {
 
     /**
-     * @var string
+     * @param $application_id
      */
-    protected string $base_uri = 'https://api.wotblitz.eu';
-    /**
-     * @var array
-     */
-    protected array $params = [];
-
-    /**
-     * @var Client
-     */
-    protected Client $client;
-
     public function __construct($application_id)
     {
-        $this->client = new Client([
-            'base_uri' => $this->base_uri,
-        ]);
+        parent::__construct($application_id);
+
+        $this->base_uri = 'https://api.wotblitz.eu';
 
         $this->params['application_id'] = $application_id;
     }
 
-
     /**
-     * @throws GuzzleException
+     * @param string $nickname
+     * @param string $language
+     * @param int $limit
+     * @param string $type
+     * @return $this
      */
     public function searchUser(string $nickname, string $language = 'en', int $limit = 100, string $type = 'startswith'): static
     {
         $endpoint = '/wotb/account/list/';
 
-        $this->params = array_merge($this->params, [
+        $this->params = [
+            'application_id' => $this->application_id,
+            'base_uri' => $this->base_uri,
             'search' => $nickname,
             'language' => $language,
             'limit' => $limit,
             'type' => $type,
-        ]);
+        ];
 
-        parent::makeRequest($this->client, 'GET', $endpoint, $this->params);
+        $this->makeRequest($this->base_uri, $endpoint, 'GET', $this->params);
 
         return $this;
-    }
-
-
-    /**
-     * @return array
-     */
-    public function getData(): array
-    {
-        return json_decode($this->response->getBody()->getContents(), 1);
     }
 
 }

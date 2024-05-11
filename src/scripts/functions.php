@@ -19,12 +19,3 @@ function dd($data)
     dump($data);
     die;
 }
-
-function abort($message = '', $code = 404)
-{
-    if ($code)
-    {
-        http_response_code($code);
-    }
-    die($message);
-}

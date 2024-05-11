@@ -2,7 +2,7 @@
 
 namespace ac1dmarv3l\WargamingAPIWrapper;
 
-class WorldOfTanksBlitz extends Main
+class WorldOfTanksBlitz extends Auth
 {
 
     /**
@@ -24,17 +24,31 @@ class WorldOfTanksBlitz extends Main
      * @param string $type
      * @return $this
      */
-    public function searchUser(string $nickname, string $language = 'en', int $limit = 100, string $type = 'startswith'): static
+    public function getPlayers(string $nickname, string $language = 'en', int $limit = 100, string $type = 'startswith'): static
     {
         $endpoint = '/wotb/account/list/';
 
         $this->params = [
-            'application_id' => $this->application_id,
             'base_uri' => $this->base_uri,
             'search' => $nickname,
             'language' => $language,
             'limit' => $limit,
             'type' => $type,
+        ];
+
+        $this->makeRequest($this->base_uri, $endpoint, 'GET', $this->params);
+
+        return $this;
+    }
+
+    public function getPersonalData($account_id, $access_token = ''): static
+    {
+        $endpoint = '/wotb/account/info/';
+
+        $this->params = [
+            'base_uri' => $this->base_uri,
+            'account_id' => $account_id,
+            'access_token' => $access_token,
         ];
 
         $this->makeRequest($this->base_uri, $endpoint, 'GET', $this->params);
